@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.Kinect.BodyBasics.Properties {
+namespace Kinect4NES.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

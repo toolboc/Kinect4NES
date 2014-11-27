@@ -2,25 +2,29 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-13</Date>
-			<Time>11:39:03.6841613-06:00</Time>
+			<Date>2014-11-26</Date>
+			<Time>14:04:37.2477367-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Analysis</Type>
-				<ProjectAttribute Name="BodyBlow_Left" Type="BOOL" />
+				<ProjectAttribute Name="Uppercut" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="BodyBlow_Left" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Uppercut" Value="false" />
 			</Function>
-			<ID>1600c92b-068f-4b21-a97d-81e476d64350</ID>
+			<ID>b11cc208-6dec-4fc3-8ec0-5165f04498eb</ID>
 		</Header>
 		<Project_Data>
 			<Files>
 				<Name />
-				<Content />
+				<Content>
+					<Items>
+						<File>E:/Kinect Studio/Repositories/Uppercut_Test.vgbclip</File>
+					</Items>
+				</Content>
 			</Files>
 		</Project_Data>
 		<UI_State />

@@ -2,20 +2,20 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-13</Date>
-			<Time>11:40:52.9670364-06:00</Time>
+			<Date>2014-11-26</Date>
+			<Time>18:36:56.2237250-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Analysis</Type>
-				<ProjectAttribute Name="HeadBlow_Right" Type="BOOL" />
+				<ProjectAttribute Name="Dodge_Right" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="HeadBlow_Right" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Dodge_Right" Value="false" />
 			</Function>
-			<ID>9b8ed8be-c499-4f9c-8da6-7ee1003b65b4</ID>
+			<ID>83e5c5ae-15b2-44ed-8a34-7322993e17a0</ID>
 		</Header>
 		<Project_Data>
 			<Files>

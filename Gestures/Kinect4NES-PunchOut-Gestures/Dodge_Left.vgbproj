@@ -2,25 +2,29 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-13</Date>
-			<Time>11:40:49.7758637-06:00</Time>
+			<Date>2014-11-26</Date>
+			<Time>18:28:16.7060742-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Training</Type>
-				<ProjectAttribute Name="HeadBlow_Left" Type="BOOL" />
+				<ProjectAttribute Name="Dodge_Left" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="HeadBlow_Left" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Dodge_Left" Value="false" />
 			</Function>
-			<ID>1f61206a-51e2-4ae6-85a7-bf64c3e7d110</ID>
+			<ID>510666ba-5026-490e-bc7c-ccfac9c943b4</ID>
 		</Header>
 		<Project_Data>
 			<Files>
 				<Name />
-				<Content />
+				<Content>
+					<Items>
+						<File>E:/Kinect Studio/Repositories/Dodge_Left.vgbclip</File>
+					</Items>
+				</Content>
 			</Files>
 		</Project_Data>
 		<UI_State />

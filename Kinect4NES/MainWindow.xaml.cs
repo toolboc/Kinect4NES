@@ -4,7 +4,7 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-namespace Microsoft.Samples.Kinect.BodyBasics
+namespace Kinect4NES
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,14 @@ namespace Microsoft.Samples.Kinect.BodyBasics
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Parameter to control use of custom gestures over generic control scheme
+        /// </summary>
+        private bool useGesture = false;
+        GestureDetector detector = null;
+
+        private Arduino board = new Arduino("COM3");
+
         /// <summary>
         /// Radius of drawn hand circles
         /// </summary>
@@ -130,10 +138,6 @@ namespace Microsoft.Samples.Kinect.BodyBasics
         /// </summary>
         private string statusText = null;
 
-        Arduino board = new Arduino("COM3");
-
-        enum NesButtons : int {Right = 2, Left, Down, Up, Start, Select, B, A}
-
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
         /// </summary>
@@ -143,6 +147,9 @@ namespace Microsoft.Samples.Kinect.BodyBasics
 
             // one sensor is currently supported
             this.kinectSensor = KinectSensor.GetDefault();
+
+            if (useGesture)
+                detector = new GestureDetector(this.kinectSensor, board);
 
             // get the coordinate mapper
             this.coordinateMapper = this.kinectSensor.CoordinateMapper;
@@ -300,6 +307,7 @@ namespace Microsoft.Samples.Kinect.BodyBasics
             {
                 this.bodyFrameReader.FrameArrived += this.Reader_FrameArrived;
             }
+
         }
 
         /// <summary>
@@ -358,7 +366,10 @@ namespace Microsoft.Samples.Kinect.BodyBasics
                     var body = bodies.Where(b => b.IsTracked).LastOrDefault();
                     if (body != null)
                     {
-                        CalcController(body);
+                        if(useGesture)
+                            detector.TrackingId = body.TrackingId;
+                        else
+                            CalcController(body);
                     }
                 }
 
@@ -625,14 +636,14 @@ namespace Microsoft.Samples.Kinect.BodyBasics
             var bButtonPin =  bButton ? DigitalPin.Low : DigitalPin.High;
             var aButtonPin =  aButton ? DigitalPin.Low : DigitalPin.High;
 
-            board.DigitalWrite((int)NesButtons.Down, dpadDownPin);
-            board.DigitalWrite((int)NesButtons.Up, dpadUpPin);
-            board.DigitalWrite((int)NesButtons.Left, dpadLeftPin);
-            board.DigitalWrite((int)NesButtons.Right, dpadRightPin);
-            board.DigitalWrite((int)NesButtons.Select, selectPin);
-            board.DigitalWrite((int)NesButtons.Start, startPin);
-            board.DigitalWrite((int)NesButtons.B, bButtonPin);
-            board.DigitalWrite((int)NesButtons.A, aButtonPin);
+            board.DigitalWrite(NesButtons.Down, dpadDownPin);
+            board.DigitalWrite(NesButtons.Up, dpadUpPin);
+            board.DigitalWrite(NesButtons.Left, dpadLeftPin);
+            board.DigitalWrite(NesButtons.Right, dpadRightPin);
+            board.DigitalWrite(NesButtons.Select, selectPin);
+            board.DigitalWrite(NesButtons.Start, startPin);
+            board.DigitalWrite(NesButtons.B, bButtonPin);
+            board.DigitalWrite(NesButtons.A, aButtonPin);
 
             Debug.WriteLine(string.Format("U: {0} D: {1} L: {2} R: {3} B: {4} A: {5} Select: {6} Start: {7}", dpadUp, dpadDown, dpadLeft, dpadRight, bButton, aButton, select, start));
         }
