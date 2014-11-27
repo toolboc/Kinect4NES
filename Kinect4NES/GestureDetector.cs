@@ -12,6 +12,7 @@ namespace Kinect4NES
     using Microsoft.Kinect.VisualGestureBuilder;
     using Arduino4Net.Models;
     using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Gesture Detector class which listens for VisualGestureBuilderFrame events from the service
@@ -19,6 +20,8 @@ namespace Kinect4NES
     public class GestureDetector : IDisposable
     {
         Arduino board;
+
+        Dictionary<string, Action> gestureActions = new Dictionary<string,Action>();
 
         /// <summary> Path to the gesture database that was trained with VGB </summary>
         private readonly string gestureDatabase = @"Database\_PunchOut_.gbd";
@@ -57,11 +60,56 @@ namespace Kinect4NES
             // load the gestures from the gesture database
             using (VisualGestureBuilderDatabase database = new VisualGestureBuilderDatabase(this.gestureDatabase))
             {
-                foreach (Gesture gesture in database.AvailableGestures)
-                {
-                    this.vgbFrameSource.AddGesture(gesture);
-                }
+                this.vgbFrameSource.AddGestures(database.AvailableGestures);
             }
+
+            InitGestureActions();
+        }
+
+        private void Press(params int[] pin)
+        {
+            for (int i = 0; i < pin.Length; i++)
+            {
+                board.DigitalWrite(pin[i], DigitalPin.Low);
+            }
+            Thread.Sleep(60);
+
+            for (int i = 0; i < pin.Length; i++)
+            {
+                board.DigitalWrite(pin[i], DigitalPin.High);
+            }
+            Thread.Sleep(60);
+        }
+
+        private void Hold(params int[] pin)
+        {
+            for ( int i = 0 ; i < pin.Length ; i++ )
+            {
+                board.DigitalWrite(pin[i], DigitalPin.Low);
+            }
+        }
+
+        private void Release(params int[] pin)
+        {
+            for (int i = 0; i < pin.Length; i++)
+            {
+                board.DigitalWrite(pin[i], DigitalPin.High);
+            }
+        }
+        
+        private void InitGestureActions()
+        {
+            gestureActions.Add("Block", () => Hold(NesButtons.Down));
+            gestureActions.Add("BodyBlow_Left", () => Press(NesButtons.B));
+            gestureActions.Add("BodyBlow_Right", () => Press(NesButtons.A));
+            gestureActions.Add("Dodge_Left", () => Press(NesButtons.Left));
+            gestureActions.Add("Dodge_Right", () => Press(NesButtons.Right));
+            gestureActions.Add("DrinkingWater", () => Press(NesButtons.Select));
+            //Double check this later
+            gestureActions.Add("Duck",  () => Press(NesButtons.Down, NesButtons.Down));
+            gestureActions.Add("HeadBlow_Left", () => Press(NesButtons.Up, NesButtons.B));
+            gestureActions.Add("HeadBlow_Right", () => Press(NesButtons.Up, NesButtons.A));
+            gestureActions.Add("Uppercut", () => Press(NesButtons.Start));
         }
 
         /// <summary>
@@ -154,64 +202,22 @@ namespace Kinect4NES
 
                     if (discreteResults != null)
                     {
-                        foreach (Gesture gesture in this.vgbFrameSource.Gestures)
+                        Parallel.ForEach(this.vgbFrameSource.Gestures, gesture =>
                         {
-                            if (gesture.GestureType == GestureType.Discrete)
-                            {
-                                DiscreteGestureResult result = null;
-                                discreteResults.TryGetValue(gesture, out result);
 
-                                if (result != null)
-                                {
-                                    DigitalPin dp = result.Detected ? DigitalPin.Low : DigitalPin.High;
-                                    switch (gesture.Name)
-                                    {
-                                        case "Block":
-                                            //board.DigitalWrite(NesButtons.Down, dp);
-                                            break;
-                                        case "BodyBlow_Left":
-                                            board.DigitalWrite(NesButtons.B, dp);
-                                            break;
-                                        case "BodyBlow_Right":
-                                            board.DigitalWrite(NesButtons.A, dp);
-                                            break;
-                                        case "Dodge_Left":
-                                            board.DigitalWrite(NesButtons.Left, dp);
-                                            break;
-                                        case "Dodge_Right":
-                                            board.DigitalWrite(NesButtons.Right, dp);
-                                            break;
-                                        case "DrinkingWater":
-                                            board.DigitalWrite(NesButtons.Select, dp);
-                                            break;
-                                        case "Duck":
-                                            board.DigitalWrite(NesButtons.Down, dp);
-                                            Thread.Sleep(60);
-                                            board.DigitalWrite(NesButtons.Down, dp);
-                                            break;
-                                        case "HeadBlow_Left":
-                                            board.DigitalWrite(NesButtons.Up, dp);
-                                            board.DigitalWrite(NesButtons.Left, dp);
-                                            break;
-                                        case "HeadBlow_Right":
-                                            board.DigitalWrite(NesButtons.Up, dp);
-                                            board.DigitalWrite(NesButtons.Right, dp);
-                                            break;
-                                        case "Uppercut":
-                                            board.DigitalWrite(NesButtons.Start, dp);
-                                            break;
-       
-                                    }
+                            DiscreteGestureResult result = null;
+                            discreteResults.TryGetValue(gesture, out result);
 
-                                    if(dp == DigitalPin.Low)
-                                        Thread.Sleep(10);
-                                }
-                            }
-                        }
+                            if (result.Detected)
+                                gestureActions[gesture.Name].Invoke();
+                            else if (gesture.Name == "Block")
+                                Release(NesButtons.Down);
+                        });
                     }
                 }
             }
         }
+        
 
         /// <summary>
         /// Handles the TrackingIdLost event for the VisualGestureBuilderSource object
