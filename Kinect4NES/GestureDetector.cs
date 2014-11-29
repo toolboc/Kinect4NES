@@ -96,6 +96,24 @@ namespace Kinect4NES
                 board.DigitalWrite(pin[i], DigitalPin.High);
             }
         }
+
+        private void RapidPress(int presses, params int[] pin)
+        {
+            for (int i = 0; i < presses; i++ )
+            {
+                for (int j = 0; j < pin.Length; j++)
+                {
+                    board.DigitalWrite(pin[j], DigitalPin.Low);
+                }
+                Thread.Sleep(60);
+
+                for (int j = 0; j < pin.Length; j++)
+                {
+                    board.DigitalWrite(pin[j], DigitalPin.High);
+                }
+                Thread.Sleep(60);
+            }
+        }
         
         private void InitGestureActions()
         {
@@ -104,9 +122,9 @@ namespace Kinect4NES
             gestureActions.Add("BodyBlow_Right", () => Press(NesButtons.A));
             gestureActions.Add("Dodge_Left", () => Press(NesButtons.Left));
             gestureActions.Add("Dodge_Right", () => Press(NesButtons.Right));
-            gestureActions.Add("DrinkingWater", () => Press(NesButtons.Select));
+            gestureActions.Add("Recover", () => RapidPress(5, NesButtons.B, NesButtons.A, NesButtons.Select));
             //Double check this later
-            gestureActions.Add("Duck",  () => Press(NesButtons.Down, NesButtons.Down));
+            gestureActions.Add("Duck", () => { Press(NesButtons.Down); Hold(NesButtons.Down); });
             gestureActions.Add("HeadBlow_Left", () => Press(NesButtons.Up, NesButtons.B));
             gestureActions.Add("HeadBlow_Right", () => Press(NesButtons.Up, NesButtons.A));
             gestureActions.Add("Uppercut", () => Press(NesButtons.Start));
@@ -204,7 +222,6 @@ namespace Kinect4NES
                     {
                         Parallel.ForEach(this.vgbFrameSource.Gestures, gesture =>
                         {
-
                             DiscreteGestureResult result = null;
                             discreteResults.TryGetValue(gesture, out result);
 

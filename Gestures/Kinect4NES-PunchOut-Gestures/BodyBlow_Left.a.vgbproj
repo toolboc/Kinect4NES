@@ -2,8 +2,8 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-26</Date>
-			<Time>20:46:54.1912813-06:00</Time>
+			<Date>2014-11-28</Date>
+			<Time>22:42:01.1043488-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
@@ -15,16 +15,12 @@
 				</ProjectAccompanyAttributes>
 				<DefaultTag xsi:type="BoolAttribute" Name="BodyBlow_Left" Value="false" />
 			</Function>
-			<ID>1600c92b-068f-4b21-a97d-81e476d64350</ID>
+			<ID>be807f70-33ec-4052-8b33-36c8d2d0bb27</ID>
 		</Header>
 		<Project_Data>
 			<Files>
 				<Name />
-				<Content>
-					<Items>
-						<File>E:/Kinect Studio/Repositories/BodyBlow_Left_Test.vgbclip</File>
-					</Items>
-				</Content>
+				<Content />
 			</Files>
 		</Project_Data>
 		<UI_State />

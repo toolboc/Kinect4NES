@@ -28,7 +28,7 @@ namespace Kinect4NES
         /// <summary>
         /// Parameter to control use of custom gestures over generic control scheme
         /// </summary>
-        private bool useGesture = false;
+        private bool useGesture = true;
         GestureDetector detector = null;
 
         private Arduino board = new Arduino("COM3");

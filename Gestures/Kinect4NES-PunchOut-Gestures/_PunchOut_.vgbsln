@@ -2,8 +2,8 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<SolutionFile>
 		<Header>
-			<Date>2014-11-26</Date>
-			<Time>19:44:00.5035794-06:00</Time>
+			<Date>2014-11-28</Date>
+			<Time>23:06:51.0054879-06:00</Time>
 			<Version>1</Version>
 			<Type>Solution</Type>
 			<ID>b3007d81-5714-49c6-80df-ae86ec0194ad</ID>
@@ -43,12 +43,6 @@
 						<File>Dodge_Right.a.vgbproj</File>
 					</Items>
 					<Items>
-						<File>DrinkingWater.vgbproj</File>
-					</Items>
-					<Items>
-						<File>DrinkingWater.a.vgbproj</File>
-					</Items>
-					<Items>
 						<File>Duck.vgbproj</File>
 					</Items>
 					<Items>
@@ -65,6 +59,12 @@
 					</Items>
 					<Items>
 						<File>HeadBlow_Right.a.vgbproj</File>
+					</Items>
+					<Items>
+						<File>Recover.vgbproj</File>
+					</Items>
+					<Items>
+						<File>Recover.a.vgbproj</File>
 					</Items>
 					<Items>
 						<File>Uppercut.vgbproj</File>

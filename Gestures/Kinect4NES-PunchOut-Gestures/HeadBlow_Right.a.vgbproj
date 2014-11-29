@@ -2,8 +2,8 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-26</Date>
-			<Time>18:45:20.7532958-06:00</Time>
+			<Date>2014-11-28</Date>
+			<Time>23:38:13.6341163-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
@@ -15,7 +15,7 @@
 				</ProjectAccompanyAttributes>
 				<DefaultTag xsi:type="BoolAttribute" Name="HeadBlow_Right" Value="false" />
 			</Function>
-			<ID>9b8ed8be-c499-4f9c-8da6-7ee1003b65b4</ID>
+			<ID>69da32b1-43c4-4fd9-b2c5-594f0ed49ecc</ID>
 		</Header>
 		<Project_Data>
 			<Files>

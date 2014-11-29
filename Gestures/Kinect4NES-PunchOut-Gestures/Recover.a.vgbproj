@@ -2,20 +2,20 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-13</Date>
-			<Time>12:07:08.9734176-06:00</Time>
+			<Date>2014-11-27</Date>
+			<Time>12:05:24.6073792-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Analysis</Type>
-				<ProjectAttribute Name="DrinkingWater" Type="BOOL" />
+				<ProjectAttribute Name="Recover" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="DrinkingWater" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Recover" Value="false" />
 			</Function>
-			<ID>d02ceb01-7faf-43da-a757-4665c7209c15</ID>
+			<ID>3eb0e896-75b7-4182-a9ce-ddb41e9c73da</ID>
 		</Header>
 		<Project_Data>
 			<Files>

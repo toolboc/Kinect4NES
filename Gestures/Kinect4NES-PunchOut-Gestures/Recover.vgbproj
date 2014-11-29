@@ -2,27 +2,27 @@
 <GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<ProjectFile>
 		<Header>
-			<Date>2014-11-26</Date>
-			<Time>18:28:28.0625851-06:00</Time>
+			<Date>2014-11-28</Date>
+			<Time>23:38:17.5604497-06:00</Time>
 			<Version>5</Version>
 			<Type>AdaBoostTrigger</Type>
 			<Function>
 				<Type>Training</Type>
-				<ProjectAttribute Name="DrinkingWater" Type="BOOL" />
+				<ProjectAttribute Name="Recover" Type="BOOL" />
 				<ProjectAccompanyAttributes>
 					<Items Name="Confidence" Type="FLOAT" />
 					<Items Name="FirstFrameDetected" Type="BOOL" />
 				</ProjectAccompanyAttributes>
-				<DefaultTag xsi:type="BoolAttribute" Name="DrinkingWater" Value="false" />
+				<DefaultTag xsi:type="BoolAttribute" Name="Recover" Value="false" />
 			</Function>
-			<ID>99eea04d-3c57-47d7-b690-2fc9f97cfde2</ID>
+			<ID>0fa738f5-93eb-4052-afd4-5e088e35f692</ID>
 		</Header>
 		<Project_Data>
 			<Files>
 				<Name />
 				<Content>
 					<Items>
-						<File>E:/Kinect Studio/Repositories/DrinkingWater.vgbclip</File>
+						<File>E:/Kinect Studio/Repositories/Recover.vgbclip</File>
 					</Items>
 				</Content>
 			</Files>
@@ -36,7 +36,7 @@
 			<Items xsi:type="FloatAttribute" Name="Weight Of False Positives During Auto Find" Value="0.5" MaxValue="1" MinValue="0" />
 			<Items xsi:type="IntAttribute" Name="Manual Filter Params: Num Frames To Filter" Value="5" MaxValue="10" MinValue="1" />
 			<Items xsi:type="FloatAttribute" Name="Manual Filter Params: Threshold" Value="0.001" MaxValue="1" MinValue="0" />
-			<Items xsi:type="BoolAttribute" Name="Duplicate And Mirror Data During Training" Value="false" />
+			<Items xsi:type="BoolAttribute" Name="Duplicate And Mirror Data During Training" Value="true" />
 			<Items xsi:type="IntAttribute" Name="% CPU For Training" Value="95" MaxValue="100" MinValue="1" />
 			<Items xsi:type="BoolAttribute" Name="Use Hands Data" Value="false" />
 			<Items xsi:type="BoolAttribute" Name="Ignore Left Arm" Value="false" />
